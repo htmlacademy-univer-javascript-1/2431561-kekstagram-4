@@ -1,6 +1,7 @@
-const checkStringLength = function(str, maxLength){
+/* eslint-disable no-unused-vars */
+function checkStringLength(str, maxLength) {
   return str.length <= maxLength;
-};
+}
 
 const isPalindrom = function(str){
   const newStr = str.replaceAll(' ','').toLowerCase();
