@@ -1,3 +1,1 @@
-import { createPhotosArray } from './modules/data';
-
-createPhotosArray();
+import './modules/render-thumbnails.js';
