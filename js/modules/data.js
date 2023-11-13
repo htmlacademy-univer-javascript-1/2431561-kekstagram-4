@@ -1,5 +1,5 @@
-import { MESSAGES, NAMES, DESCRIPTIONS, PHOTO_COUNT, AVATAR_COUNT } from './constant';
-import { getRandomNumber, getRandomElement, getRandomIdGenerator } from './util';
+import { MESSAGES, NAMES, DESCRIPTIONS, PHOTO_COUNT, AVATAR_COUNT } from './constant.js';
+import { getRandomNumber, getRandomElement, getRandomIdGenerator } from './util.js';
 
 
 const generatePhotoId = getRandomIdGenerator(1, PHOTO_COUNT);
