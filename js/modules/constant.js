@@ -30,3 +30,5 @@ export const DESCRIPTIONS = [
   'Тестим новую камеру!',
   'Верьте в себя. Главное хотеть и мечтать...'
 ];
+
+export const COMMENTS_PORTION = 5;
