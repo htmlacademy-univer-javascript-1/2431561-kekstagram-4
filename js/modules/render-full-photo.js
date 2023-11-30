@@ -1,5 +1,4 @@
 import './render-thumbnails.js';
-import { isEscapeKey } from './util.js';
 import { COMMENTS_PORTION } from './constant.js';
 
 const body = document.querySelector('body');
@@ -14,9 +13,10 @@ let commentsShow = 0;
 
 
 const onEscape = (evt) => {
-  if(isEscapeKey){
+  if(evt.key === 'Escape'){
     evt.preventDefault();
     closeBigPicture();
+    document.removeEventListener('keydown', onEscape);
   }
 };
 

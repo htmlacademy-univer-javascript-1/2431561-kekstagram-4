@@ -1,7 +1,7 @@
-export const PHOTO_COUNT = 25;
-export const AVATAR_COUNT = 6;
-export const NAMES = ['Ваня', 'Петя', 'Саша', 'Маша', 'Таня', 'Аня', 'Игорь', 'Илья', 'Вова', 'Кристина', 'Катя', 'Дима', 'Ким', 'Аким', 'Степан', 'Кирилл', 'Антон', 'Гоша', 'Виталя', 'Данил', 'Денис', 'Полина', 'Арина', 'Даша'];
-export const MESSAGES = [
+const PHOTO_COUNT = 25;
+const AVATAR_COUNT = 6;
+const NAMES = ['Ваня', 'Петя', 'Саша', 'Маша', 'Таня', 'Аня', 'Игорь', 'Илья', 'Вова', 'Кристина', 'Катя', 'Дима', 'Ким', 'Аким', 'Степан', 'Кирилл', 'Антон', 'Гоша', 'Виталя', 'Данил', 'Денис', 'Полина', 'Арина', 'Даша'];
+const MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -18,7 +18,7 @@ export const MESSAGES = [
   'Разве это композиция?! Что это за композиция?!',
   'Кадрирование просто никакое.'
 ];
-export const DESCRIPTIONS = [
+const DESCRIPTIONS = [
   'Классная фотка',
   'Красивый вид',
   'Это фото запомнится мне надолго...',
@@ -31,4 +31,14 @@ export const DESCRIPTIONS = [
   'Верьте в себя. Главное хотеть и мечтать...'
 ];
 
-export const COMMENTS_PORTION = 5;
+const COMMENTS_PORTION = 5;
+
+const HASHTAG_MAX_COUNT = 5;
+const VALID_HASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
+const ERROR_MESSAGE = {
+  NOT_VALID: 'Хэш-тег должен начинаться с # и состоять только из букв или цифр',
+  NOT_UNIQUE: 'Один и тот же хэш-тег не может быть использован дважды',
+  MAX_COUNT: 'Нельзя указать больше пяти хэш-тегов'
+};
+
+export{PHOTO_COUNT, AVATAR_COUNT, NAMES, MESSAGES, DESCRIPTIONS, COMMENTS_PORTION, HASHTAG_MAX_COUNT, VALID_HASHTAG, ERROR_MESSAGE};
