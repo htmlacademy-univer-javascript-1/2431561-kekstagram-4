@@ -1,4 +1,6 @@
-import { HASHTAG_MAX_COUNT, VALID_HASHTAG, ERROR_MESSAGE } from './constant.js';
+import { HASHTAG_MAX_COUNT, VALID_HASHTAG, ERROR_MESSAGE, COMMENT_LENGTH_LIMIT } from './constant.js';
+import { resetScale } from './scale.js';
+import { resetEffects } from './effects.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFile = uploadForm.querySelector('#upload-file');
@@ -20,7 +22,14 @@ const areHashtagsUnique = (hashtags) => {
   const lowercaseHashtags = hashtagsList(hashtags).map((tag) => tag.toLowerCase());
   return lowercaseHashtags.length === new Set(lowercaseHashtags).size;
 };
-
+const isDescriptionLengthLimit = (description) => description.length <= COMMENT_LENGTH_LIMIT;
+pristine.addValidator(
+  descriptionField,
+  isDescriptionLengthLimit,
+  ERROR_MESSAGE.COMMENT_LENGTH_ERROR,
+  1,
+  true
+);
 pristine.addValidator(
   hashtagsField,
   isHashtagValid,
@@ -63,6 +72,8 @@ function closeUploadForm() {
   body.classList.remove('modal-open');
   uploadForm.reset();
   pristine.reset();
+  resetScale();
+  resetEffects();
   closeButton.removeEventListener('keydown', onEscape);
 }
 
