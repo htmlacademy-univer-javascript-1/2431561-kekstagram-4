@@ -1,6 +1,18 @@
-import { createPhotosArray } from './modules/data.js';
 import { renderPicture } from './modules/gallery.js';
-import './modules/work-with-form.js';
+import { setOnFormSubmit, closeUploadForm } from './modules/work-with-form.js';
+import { showErrorMessage, showSuccessMessage } from './modules/messages.js';
+import { getData, sendData } from './modules/api.js';
 
-const photosArray = createPhotosArray();
-renderPicture(photosArray);
+setOnFormSubmit(async (data) => {
+  try{
+    await sendData(data);
+    closeUploadForm();
+    showSuccessMessage();
+  } catch(error){
+    showErrorMessage();
+  }
+});
+
+getData().then((picturesArray) => {
+  renderPicture(picturesArray);
+});

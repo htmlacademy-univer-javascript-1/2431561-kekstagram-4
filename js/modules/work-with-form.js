@@ -9,6 +9,7 @@ const closeButton = uploadForm.querySelector('#upload-cancel');
 const hashtagsField = uploadForm.querySelector('.text__hashtags');
 const descriptionField = uploadForm.querySelector('.text__description');
 const body = document.querySelector('body');
+const imagePreview = document.querySelector('.img-upload__preview img');
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__field-wrapper',
@@ -78,7 +79,14 @@ function closeUploadForm() {
 }
 
 uploadFile.addEventListener('input', openUploadForm);
-uploadForm.addEventListener('submit', () => {});
+
+uploadFile.addEventListener('change', (evt)=>{
+  const file = evt.target.files[0];
+  if(file){
+    const imageURL = URL.createObjectURL(file);
+    imagePreview.src = imageURL;
+  }
+});
 
 descriptionField.addEventListener('keydown', (evt) => {
   if(evt.key === 'Escape'){
@@ -90,3 +98,14 @@ hashtagsField.addEventListener('keydown', (evt) => {
     evt.stopPropagation();
   }
 });
+
+const setOnFormSubmit = (clb) => {
+  uploadForm.addEventListener('submit', async (evt) => {
+    evt.preventDefault();
+    if(pristine.validate()){
+      await clb(new FormData(uploadForm));
+    }
+  });
+};
+
+export{setOnFormSubmit, closeUploadForm};
