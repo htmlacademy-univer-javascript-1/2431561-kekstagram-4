@@ -21,4 +21,24 @@ const getRandomIdGenerator = (min, max) => {
 const getRandomElement = (array) => array[getRandomNumber(0, array.length-1)];
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {getRandomNumber, getRandomElement, getRandomIdGenerator, isEscapeKey};
+function debounce (callback, timeoutDelay = 500) {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+function throttle (callback, delayBetweenFrames) {
+  let lastTime = 0;
+  return (...rest) => {
+    const now = new Date();
+    if (now - lastTime >= delayBetweenFrames) {
+      callback.apply(this, rest);
+      lastTime = now;
+    }
+  };
+}
+
+export {getRandomNumber, getRandomElement, getRandomIdGenerator, isEscapeKey, debounce, throttle};

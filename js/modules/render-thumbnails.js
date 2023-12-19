@@ -12,7 +12,15 @@ const getThumbnailFromTemplate = ({url, description, likes, comments, id}) => {
   return photo;
 };
 
+const clearPictures = () => {
+  const pictures = photosContainer.querySelectorAll('.picture');
+  pictures.forEach((picture) => {
+    picture.remove();
+  });
+};
+
 const renderThumbnails = (pictures) => {
+  clearPictures();
   const photosListFragment = document.createDocumentFragment();
   pictures.forEach((picture) => {
     const newThumbnail = getThumbnailFromTemplate(picture);
