@@ -80,6 +80,7 @@ function closeUploadForm() {
 
 uploadFile.addEventListener('input', openUploadForm);
 
+/*Показ загруженной пользователем фотографии*/
 uploadFile.addEventListener('change', (evt)=>{
   const file = evt.target.files[0];
   if(file){
