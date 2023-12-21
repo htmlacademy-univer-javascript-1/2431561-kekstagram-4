@@ -1,8 +1,8 @@
-import { Filters, RANDOM_PICTURES_COUNT } from './constant.js';
+import { Filter, RANDOM_PICTURES_COUNT } from './constant.js';
 
 const imageFilters = document.querySelector('.img-filters');
 const activeFilterClass = 'img-filters__button--active';
-let currentFilter = Filters.DEFAULT;
+let currentFilter = Filter.DEFAULT;
 let picturesList = [];
 
 const removeActiveClassFromFilter = () => {
@@ -15,9 +15,9 @@ const sortByComments = (firstPicture, secondPicture) => secondPicture.comments.l
 
 const getFilteredPictures = () => {
   switch(currentFilter){
-    case Filters.RANDOM:
+    case Filter.RANDOM:
       return [...picturesList].sort(randomSort).slice(0, RANDOM_PICTURES_COUNT);
-    case Filters.DISCUSSED:
+    case Filter.DISCUSSED:
       return [...picturesList].sort(sortByComments);
     default:
       return [...picturesList];
