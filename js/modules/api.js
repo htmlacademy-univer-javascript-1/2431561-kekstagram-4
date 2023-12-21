@@ -1,6 +1,6 @@
-import {BASE_URL, METHOD, ROUTE, SERVER_ERROR_TEXT} from './constant.js';
+import {BASE_URL, Method, Route, ServerErrorText} from './constant.js';
 
-const load = (route, errorText, method = METHOD.GET, body = null) =>
+const loadData = (route, errorText, method = Method.GET, body = null) =>
   fetch(`${BASE_URL}${route}`, {method, body})
     .then((response) => {
       if (!response.ok) {
@@ -12,7 +12,7 @@ const load = (route, errorText, method = METHOD.GET, body = null) =>
       throw new Error(errorText);
     });
 
-const getData = () => load(ROUTE.GET_DATA, SERVER_ERROR_TEXT.GET_DATA);
-const sendData = (body) => load(ROUTE.SEND_DATA, SERVER_ERROR_TEXT.SEND_DATA, METHOD.POST, body);
+const getData = () => loadData(Route.GET_DATA, ServerErrorText.GET_DATA);
+const sendData = (body) => loadData(Route.SEND_DATA, ServerErrorText.SEND_DATA, Method.POST, body);
 
 export{getData, sendData};

@@ -1,11 +1,11 @@
-import { EFFECTS } from './constant.js';
+import { Effect } from './constant.js';
 
 const image = document.querySelector('.img-upload__preview img');
 const effectLevel = document.querySelector('.effect-level__value');
 const effects = document.querySelector('.effects');
 const effectsSlider = document.querySelector('.effect-level__slider');
 const sliderWrapper =  document.querySelector('.img-upload__effect-level');
-const DEFAULT_EFFECT = EFFECTS[0];
+const DEFAULT_EFFECT = Effect[0];
 let chosenEffect = DEFAULT_EFFECT;
 
 const isDefaultEffect = () => chosenEffect === DEFAULT_EFFECT;
@@ -40,7 +40,7 @@ const changeEffect = (evt) => {
   if(!evt.target.classList.contains('effects__radio')){
     return;
   }
-  chosenEffect = EFFECTS.find((effect) => effect.name === evt.target.value);
+  chosenEffect = Effect.find((effect) => effect.name === evt.target.value);
   image.className = `effects-preview--${chosenEffect.name}`;
   updateSlider();
 };

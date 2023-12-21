@@ -30,25 +30,21 @@ const DESCRIPTIONS = [
   'Тестим новую камеру!',
   'Верьте в себя. Главное хотеть и мечтать...'
 ];
-
 const COMMENTS_PORTION = 5;
-
 const HASHTAG_MAX_COUNT = 5;
 const COMMENT_LENGTH_LIMIT = 140;
 const VALID_HASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
-const ERROR_MESSAGE = {
+const ErrorMessage = {
   NOT_VALID: 'Хэш-тег должен начинаться с # и состоять только из букв или цифр',
   NOT_UNIQUE: 'Один и тот же хэш-тег не может быть использован дважды',
   MAX_COUNT: 'Нельзя указать больше пяти хэш-тегов',
   COMMENT_LENGTH_ERROR: 'Длина комментария не может составлять больше 140 символов',
 };
-
 const STEP = 25;
 const MIN_SCALE_VALUE = 25;
 const MAX_SCALE_VALUE = 100;
 const DEFAULT_SCALE_VALUE = 100;
-
-const EFFECTS = [
+const Effect = [
   {
     name: 'none',
     style: 'none',
@@ -98,34 +94,27 @@ const EFFECTS = [
     unit: '',
   }
 ];
-
 const BASE_URL = 'https://29.javascript.pages.academy/kekstagram';
-
-const ROUTE = {
+const Route = {
   GET_DATA: '/data',
   SEND_DATA: '/',
 };
-
-const METHOD = {
+const Method = {
   GET: 'GET',
   POST: 'POST',
 };
-
-const SERVER_ERROR_TEXT = {
+const ServerErrorText = {
   GET_DATA: 'Не удалось загрузить данные.',
   SEND_DATA: 'Не удалось отправить форму. Попробуйте ещё раз',
 };
-
-const Filters = {
+const Filter = {
   DEFAULT: 'filter-default',
   RANDOM: 'filter-random',
   DISCUSSED: 'filter-discussed'
 };
-
 const RANDOM_PICTURES_COUNT = 10;
 
-
 export{PHOTO_COUNT, AVATAR_COUNT, NAMES, MESSAGES, DESCRIPTIONS, COMMENTS_PORTION, HASHTAG_MAX_COUNT,
-  VALID_HASHTAG, ERROR_MESSAGE, COMMENT_LENGTH_LIMIT, STEP, MIN_SCALE_VALUE,
-  MAX_SCALE_VALUE, DEFAULT_SCALE_VALUE, EFFECTS, BASE_URL, ROUTE, METHOD, SERVER_ERROR_TEXT,
-  Filters, RANDOM_PICTURES_COUNT};
+  VALID_HASHTAG, ErrorMessage, COMMENT_LENGTH_LIMIT, STEP, MIN_SCALE_VALUE,
+  MAX_SCALE_VALUE, DEFAULT_SCALE_VALUE, Effect, BASE_URL, Route, Method, ServerErrorText,
+  Filter, RANDOM_PICTURES_COUNT};

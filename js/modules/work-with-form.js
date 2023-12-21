@@ -1,4 +1,4 @@
-import { HASHTAG_MAX_COUNT, VALID_HASHTAG, ERROR_MESSAGE, COMMENT_LENGTH_LIMIT } from './constant.js';
+import { HASHTAG_MAX_COUNT, VALID_HASHTAG, ErrorMessage, COMMENT_LENGTH_LIMIT } from './constant.js';
 import { resetScale } from './scale.js';
 import { resetEffects } from './effects.js';
 
@@ -10,6 +10,7 @@ const hashtagsField = uploadForm.querySelector('.text__hashtags');
 const descriptionField = uploadForm.querySelector('.text__description');
 const body = document.querySelector('body');
 const imagePreview = document.querySelector('.img-upload__preview img');
+const submitButton = document.querySelector('#upload-submit');
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__field-wrapper',
@@ -27,28 +28,28 @@ const isDescriptionLengthLimit = (description) => description.length <= COMMENT_
 pristine.addValidator(
   descriptionField,
   isDescriptionLengthLimit,
-  ERROR_MESSAGE.COMMENT_LENGTH_ERROR,
+  ErrorMessage.COMMENT_LENGTH_ERROR,
   1,
   true
 );
 pristine.addValidator(
   hashtagsField,
   isHashtagValid,
-  ERROR_MESSAGE.NOT_VALID,
+  ErrorMessage.NOT_VALID,
   2,
   true
 );
 pristine.addValidator(
   hashtagsField,
   isHashtagCountLimit,
-  ERROR_MESSAGE.MAX_COUNT,
+  ErrorMessage.MAX_COUNT,
   2,
   true
 );
 pristine.addValidator(
   hashtagsField,
   areHashtagsUnique,
-  ERROR_MESSAGE.NOT_UNIQUE,
+  ErrorMessage.NOT_UNIQUE,
   1,
   true
 );
@@ -66,6 +67,7 @@ function openUploadForm() {
   body.classList.add('modal-open');
   document.addEventListener('keydown', onEscape);
   closeButton.addEventListener('click', closeUploadForm);
+  submitButton.disabled = false;
 }
 
 function closeUploadForm() {
@@ -80,7 +82,6 @@ function closeUploadForm() {
 
 uploadFile.addEventListener('input', openUploadForm);
 
-/*Показ загруженной пользователем фотографии*/
 uploadFile.addEventListener('change', (evt)=>{
   const file = evt.target.files[0];
   if(file){
@@ -104,6 +105,7 @@ const setOnFormSubmit = (clb) => {
   uploadForm.addEventListener('submit', async (evt) => {
     evt.preventDefault();
     if(pristine.validate()){
+      submitButton.disabled = true;
       await clb(new FormData(uploadForm));
     }
   });
