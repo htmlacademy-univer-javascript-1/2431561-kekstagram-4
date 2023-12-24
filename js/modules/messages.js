@@ -12,6 +12,7 @@ const hideErrorMessage = () => {
 };
 
 const hideErrorMessageOnClick = (evt) => {
+  document.removeEventListener('click', hideErrorMessageOnClick);
   const error = document.querySelector('.error');
   if(evt.target === error){
     hideErrorMessage();
@@ -36,6 +37,7 @@ const hideSuccessMessage = () => {
 };
 
 const hideSuccessMessageOnClick = (evt) => {
+  document.removeEventListener('click', hideSuccessMessageOnClick);
   const success = document.querySelector('.success');
   if(evt.target === success){
     hideSuccessMessage();

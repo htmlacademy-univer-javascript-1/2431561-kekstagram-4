@@ -58,7 +58,6 @@ const onEscape = (evt) => {
   if(evt.key === 'Escape'){
     evt.preventDefault();
     closeUploadForm();
-    document.removeEventListener('keydown', onEscape);
   }
 };
 
@@ -77,7 +76,8 @@ function closeUploadForm() {
   pristine.reset();
   resetScale();
   resetEffects();
-  closeButton.removeEventListener('keydown', onEscape);
+  document.removeEventListener('keydown', onEscape);
+  closeButton.removeEventListener('click', closeUploadForm);
 }
 
 uploadFile.addEventListener('input', openUploadForm);
